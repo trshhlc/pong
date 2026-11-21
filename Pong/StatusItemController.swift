@@ -58,7 +58,10 @@ final class StatusItemController: NSObject {
         host.sizingOptions = []
         host.frame = NSRect(x: 0, y: 0, width: Metrics.idleWidth, height: NSStatusBar.system.thickness)
         host.autoresizingMask = [.width, .height]
-        button.addSubview(host)
+        // Как в paw: обычное aqua/darkAqua убирает серый оттенок .primary в строке меню.
+        let icon = MenuBarIconContainer(content: host)
+        icon.autoresizingMask = [.width, .height]
+        button.addSubview(icon)
 
         button.target = self
         button.action = #selector(handleClick(_:))
